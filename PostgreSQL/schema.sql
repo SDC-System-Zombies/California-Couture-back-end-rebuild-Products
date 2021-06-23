@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS products (
   slogan VARCHAR(200) NOT NULL,
   description TEXT NOT NULL,
   category VARCHAR(200) NOT NULL,
-  default_price SMALLINT NOT NULL
+  default_price INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS features (
@@ -68,3 +68,10 @@ CREATE TABLE IF NOT EXISTS skus (
       REFERENCES styles(styleId)
 );
 
+/*
+import CSV files statements
+
+COPY products
+FROM '/Users/vytran/Downloads/product.csv'
+DELIMITER ','
+CSV HEADER;
