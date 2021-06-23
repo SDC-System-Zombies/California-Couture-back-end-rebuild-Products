@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS products (
   slogan VARCHAR(200) NOT NULL,
   description TEXT NOT NULL,
   category VARCHAR(200) NOT NULL,
-  default_price INT NOT NULL
+  default_price VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS features (
@@ -73,5 +73,6 @@ import CSV files statements
 
 COPY products
 FROM '/Users/vytran/Downloads/product.csv'
+null ''
 DELIMITER ','
 CSV HEADER;
