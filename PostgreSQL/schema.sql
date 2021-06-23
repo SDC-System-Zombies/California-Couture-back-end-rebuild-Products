@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS styles (
   styleId SERIAL PRIMARY KEY,
   productId INT NOT NULL,
   name VARCHAR(200) NOT NULL,
-  sale_price SMALLINT,
-  original_price SMALLINT NOT NULL,
+  sale_price INT,
+  original_price INT NOT NULL,
   default_style BOOLEAN,
   CONSTRAINT fk_product
     FOREIGN KEY(productId)
