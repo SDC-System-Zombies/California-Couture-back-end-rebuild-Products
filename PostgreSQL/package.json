@@ -2,7 +2,7 @@
   "name": "system-design-capstone",
   "version": "1.0.0",
   "description": "creating database/server for FEC",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "jest",
     "server-dev": "nodemon server.js",
