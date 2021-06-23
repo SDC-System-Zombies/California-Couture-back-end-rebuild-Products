@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS styles (
 );
 
 CREATE TABLE IF NOT EXISTS photos (
-  id SERIAL PRIMARY KEY,
+  id INT PRIMARY KEY,
   styleId INT NOT NULL,
   url TEXT NOT NULL,
   thumbnail_url TEXT NOT NULL,
@@ -91,4 +91,13 @@ FROM '/Users/vytran/Downloads/styles.csv'
 DELIMITER ','
 CSV HEADER;
 
+COPY photos(styleId, url, thumbnail_url)
+FROM PROGRAM 'cut -d "," -f 2,3,4 /Users/vytran/Downloads/photos.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY skus
+FROM '/Users/vytran/Downloads/skus.csv'
+DELIMITER ','
+CSV HEADER;
 */
