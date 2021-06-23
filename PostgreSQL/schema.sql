@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS styles (
   styleId SERIAL PRIMARY KEY,
   productId INT NOT NULL,
   name VARCHAR(200) NOT NULL,
-  sale_price INT,
+  sale_price VARCHAR(20),
   original_price INT NOT NULL,
   default_style BOOLEAN,
   CONSTRAINT fk_product
@@ -69,10 +69,26 @@ CREATE TABLE IF NOT EXISTS skus (
 );
 
 /*
-import CSV files statements
+import CSV files statements - done in terminal
 
 COPY products
 FROM '/Users/vytran/Downloads/product.csv'
-null ''
 DELIMITER ','
 CSV HEADER;
+
+COPY features
+FROM '/Users/vytran/Downloads/features.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY related
+FROM '/Users/vytran/Downloads/related.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY styles
+FROM '/Users/vytran/Downloads/styles.csv'
+DELIMITER ','
+CSV HEADER;
+
+*/
