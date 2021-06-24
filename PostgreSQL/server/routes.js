@@ -1,12 +1,12 @@
 const controller = require('./controllers');
 const router = require('express').Router();
 
-router.get('/messages', controller.messages.get);
+router.get('/products', controller);
 
-router.post('/messages', controller.messages.post);
+router.get('/products/:product_id', controller);
 
-router.get('/users', controller.users.get);
+router.get('/products/:product_id/styles', controller);
 
-router.post('/users', controller.users.post);
+router.get('/products/:product_id/related', controller);
 
 module.exports = router;
