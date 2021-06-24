@@ -90,6 +90,7 @@ FROM '/Users/vytran/Downloads/styles.csv'
 DELIMITER ','
 CSV HEADER;
 
+-- dont pull the first column of the CSV file due to ids being duplicated / null, not what we want in system
 COPY photos(styleId, url, thumbnail_url)
 FROM PROGRAM 'cut -d "," -f 2,3,4 /Users/vytran/Downloads/photos.csv'
 DELIMITER ','
