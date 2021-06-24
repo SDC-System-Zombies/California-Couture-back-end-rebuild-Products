@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS styles (
 );
 
 CREATE TABLE IF NOT EXISTS photos (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   styleId INT NOT NULL,
   url TEXT NOT NULL,
   thumbnail_url TEXT NOT NULL,
