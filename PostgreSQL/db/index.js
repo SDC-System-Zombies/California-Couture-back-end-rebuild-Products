@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const token = require('token.js');
 
 const pool = new Pool({
-  user: 'vytran',
+  user: 'hrvy',
   host: 'localhost',
   database: 'atelier',
   password: token,
