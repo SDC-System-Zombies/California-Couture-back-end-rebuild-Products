@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const token = require('token.js');
+const token = require('./token.js');
 
 const pool = new Pool({
   user: 'hrvy',
