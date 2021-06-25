@@ -6,10 +6,22 @@ const getAllProducts = (req, res) => {
   .catch((err) => res.status(500).send(`Error fetching products: ${err}`));
 };
 
-const getOneProduct = () => {
-  fetchOneProduct
-}
+const getOneProduct = (req, res) => {
+  const id = [ req.params.product_id ];
+  fetchOneProduct(id)
+  .then((data) => res.status(200).send(data))
+  .catch((err) => res.status(500).send(`Error fetching a product: ${err}`));
+};
+
+const getStyles = (req, res) => {
+  const id = [ req.params.product_id ];
+  fetchStyles(id)
+  .then((data) => res.status(200).send(data))
+  .catch((err) => res.status(500).send(`Error fetching styles: ${err}`));
+};
 
 module.exports = {
-  getAllProducts
+  getAllProducts,
+  getOneProduct,
+  getStyles
 };

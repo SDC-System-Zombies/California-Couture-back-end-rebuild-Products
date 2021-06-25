@@ -14,14 +14,18 @@ const fetchOneProduct = (params) => {
     pool.query(getProductQuery, params),
     pool.query(getFeatureQuery, params)
   ])
-  .then((data) => data);
+  .then((data) => {
+    const productData = data[0].rows[0];
+    const featureData = data[1].rows;
+
+    return { ...productData, features: featureData };
+  });
 };
 
 const fetchStyles = (params) => {
   const queryStr = 'SELECT styleId, name, sale_price, original_price, default_style FROM styles WHERE productId = $1';
-  pool.query(queryStr, params)
-  .then((data) => data)
-  .catch((err) => `Query fetching styles failed: ${err}`);
+  return pool.query(queryStr, params)
+  .then((data) => data.rows);
 };
 
 const fetchSkus = (params) => {

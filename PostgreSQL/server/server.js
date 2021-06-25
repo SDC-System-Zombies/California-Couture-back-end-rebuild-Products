@@ -9,7 +9,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', router);
+app.use('/products', router);
 
 // app.use(express.static(__dirname + '/../client'));
 
