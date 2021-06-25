@@ -51,12 +51,12 @@ CREATE TABLE IF NOT EXISTS styles (
 
 -- CREATE TABLE IF NOT EXISTS photos (
 --   id SERIAL PRIMARY KEY,
---   styleId INT NOT NULL,
+--   style_id INT NOT NULL,
 --   url TEXT NOT NULL,
 --   thumbnail_url TEXT NOT NULL,
 --   CONSTRAINT fk_style
---     FOREIGN KEY(styleId)
---       REFERENCES styles(styleId)
+--     FOREIGN KEY(style_id)
+--       REFERENCES styles(style_id)
 -- );
 
 CREATE TABLE IF NOT EXISTS skus (
@@ -92,7 +92,7 @@ DELIMITER ','
 CSV HEADER;
 
 -- dont pull the first column of the CSV file due to ids being duplicated / null, not what we want in system
--- COPY photos(styleId, url, thumbnail_url)
+-- COPY photos(style_id, url, thumbnail_url)
 -- FROM PROGRAM 'cut -d "," -f 2,3,4 /Users/vytran/Downloads/photos.csv'
 -- DELIMITER ','
 -- CSV HEADER;
