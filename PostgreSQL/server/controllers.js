@@ -1,4 +1,4 @@
-const { fetchAllProducts, fetchOneProduct, fetchStyles, fetchSkus, fetchRelated } = require('../db/queries.js');
+const { fetchAllProducts, fetchOneProduct, fetchStyles, fetchRelated } = require('../db/queries.js');
 
 const getAllProducts = (req, res) => {
   fetchAllProducts()

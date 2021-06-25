@@ -25,27 +25,49 @@ const fetchOneProduct = (params) => {
 const fetchStyles = (params) => {
   const queryStr = 'SELECT styleId, name, sale_price, original_price, default_style FROM styles WHERE productId = $1';
   return pool.query(queryStr, params)
-  .then((data) => data.rows);
+  .then((data) => {
+    const stylesData = data.rows;
+
+    const skuData = stylesData.map((style) => {
+      const id = [ style.styleid ];
+      return fetchSkus(id)
+      .then((data) => {
+        return data.map((sku) => {
+          const specificSku = {};
+          specificSku[sku.id] = {
+            size: sku.size,
+            quantity: sku.quantity };
+
+          return specificSku;
+        });
+      });
+    });
+
+    return Promise.all(skuData)
+    .then((dataSKU) => {
+      return stylesData.map((style, index) => {
+        style['skus'] = dataSKU[index];
+        return style;
+      })
+    });
+  });
 };
 
 const fetchSkus = (params) => {
-  const queryStr = 'SELECT size, quantity FROM styles WHERE styleId = $1';
-  pool.query(queryStr, params)
-  .then((data) => data)
-  .catch((err) => `Query fetching skus failed: ${err}`);
+  const queryStr = 'SELECT id, size, quantity FROM skus WHERE styleId = $1';
+  return pool.query(queryStr, params)
+  .then((data) => data.rows);
 };
 
 const fetchRelated = (params) => {
   const queryStr = 'SELECT relatedId FROM related WHERE productId = $1';
-  pool.query(queryStr, params)
-  .then((data) => data)
-  .catch((err) => `Query fetching related products failed: ${err}`);
+  return pool.query(queryStr, params)
+  .then((data) => data);
 };
 
 module.exports = {
   fetchAllProducts,
   fetchOneProduct,
   fetchStyles,
-  fetchSkus,
   fetchRelated
 };
