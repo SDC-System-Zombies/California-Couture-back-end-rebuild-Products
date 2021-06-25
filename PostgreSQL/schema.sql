@@ -49,15 +49,15 @@ CREATE TABLE IF NOT EXISTS styles (
       REFERENCES products(id)
 );
 
--- CREATE TABLE IF NOT EXISTS photos (
---   id SERIAL PRIMARY KEY,
---   style_id INT NOT NULL,
---   url TEXT NOT NULL,
---   thumbnail_url TEXT NOT NULL,
---   CONSTRAINT fk_style
---     FOREIGN KEY(style_id)
---       REFERENCES styles(style_id)
--- );
+CREATE TABLE IF NOT EXISTS photos (
+  id SERIAL PRIMARY KEY,
+  style_id INT NOT NULL,
+  url TEXT NOT NULL,
+  thumbnail_url TEXT NOT NULL,
+  CONSTRAINT fk_style
+    FOREIGN KEY(style_id)
+      REFERENCES styles(style_id)
+);
 
 CREATE TABLE IF NOT EXISTS skus (
   id SERIAL PRIMARY KEY,
