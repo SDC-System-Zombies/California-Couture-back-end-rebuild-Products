@@ -10,7 +10,7 @@ to create the tables within that database
 
 
 CREATE TABLE IF NOT EXISTS products (
-  product_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR(200) NOT NULL,
   slogan VARCHAR(200) NOT NULL,
   description TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS features (
   value VARCHAR(200),
   CONSTRAINT fk_product
     FOREIGN KEY(product_id)
-      REFERENCES products(product_id)
+      REFERENCES products(id)
 );
 
 CREATE TABLE IF NOT EXISTS related (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS related (
   related_id INT NOT NULL,
   CONSTRAINT fk_product
     FOREIGN KEY(product_id)
-      REFERENCES products(product_id)
+      REFERENCES products(id)
 );
 
 CREATE TABLE IF NOT EXISTS styles (
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS styles (
   default? BOOLEAN,
   CONSTRAINT fk_product
     FOREIGN KEY(product_id)
-      REFERENCES products(product_id)
+      REFERENCES products(id)
 );
 
 -- CREATE TABLE IF NOT EXISTS photos (

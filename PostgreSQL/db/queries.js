@@ -7,7 +7,7 @@ const fetchAllProducts = () => {
 };
 
 const fetchOneProduct = (params) => {
-  const getProductQuery = 'SELECT * FROM products WHERE product_id = $1';
+  const getProductQuery = 'SELECT * FROM products WHERE id = $1';
   const getFeatureQuery = 'SELECT feature, value FROM features WHERE product_id = $1';
 
   return Promise.all([
