@@ -1,12 +1,13 @@
 /*
 Use this command line to create the database first in terminal
-CREATE DATABASE atelier WITH OWNER = vytran ENCODING = 'UTF8';
+CREATE DATABASE atelier WITH OWNER = hrvy ENCODING = 'UTF8';
 
 then run this file with the command:
 psql -d atelier -a -f schema.sql
 
 to create the tables within that database
 */
+
 
 CREATE TABLE IF NOT EXISTS products (
   productId SERIAL PRIMARY KEY,

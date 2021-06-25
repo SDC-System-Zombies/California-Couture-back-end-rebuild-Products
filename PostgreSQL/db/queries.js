@@ -1,13 +1,12 @@
 const pool = require('./index.js');
 
 const fetchAllProducts = () => {
-    const queryStr = 'SELECT * FROM products LIMIT 5';
-    pool.query(queryStr)
-    .then((data) => data)
-    .catch((err) => `Query fetching products failed: ${err}`);
+  const queryStr = 'SELECT * FROM products LIMIT 5';
+  return pool.query(queryStr)
+  .then((data) => data.rows);
 };
 
-const fetchProduct = (params) => {
+const fetchOneProduct = (params) => {
   const getProductQuery = 'SELECT * FROM products WHERE productId = $1';
   const getFeatureQuery = 'SELECT feature, value FROM features WHERE productId = $1';
 

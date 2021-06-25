@@ -1,14 +1,12 @@
 const { fetchAllProducts, fetchProduct, fetchStyles, fetchSkus, fetchRelated } = require('../db/queries.js');
 
 const getAllProducts = (req, res) => {
-  new Promise ((res, rej) => {
-    fetchAllProducts((data, err) => {
-      err ? rej(err) : res(data);
-    });
-  })
+  fetchAllProducts()
   .then((data) => res.status(200).send(data))
-  .catch((err) => res.status(400).second(`Error fetching products: ${err}`));
+  .catch((err) => res.status(500).send(`Error fetching products: ${err}`));
 };
+
+const getOneProduct
 
 module.exports = {
   getAllProducts
