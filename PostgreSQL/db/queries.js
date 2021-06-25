@@ -45,11 +45,9 @@ const fetchStyles = (params) => {
     });
 
     return Promise.all(skuData)
-    .then((dataSKU) => {
-      return stylesData.map((style, index) => {
+    .then((dataSKU) => stylesData.map((style, index) => {
         return { ...style, skus: dataSKU[index] };
-      });
-    });
+      }));
   });
 };
 
