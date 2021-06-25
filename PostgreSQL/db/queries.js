@@ -36,7 +36,8 @@ const fetchStyles = (params) => {
           const specificSku = {};
           specificSku[sku.id] = {
             size: sku.size,
-            quantity: sku.quantity };
+            quantity: sku.quantity
+          };
 
           return specificSku;
         });
@@ -47,7 +48,7 @@ const fetchStyles = (params) => {
     .then((dataSKU) => {
       return stylesData.map((style, index) => {
         return { ...style, skus: dataSKU[index] };
-      })
+      });
     });
   });
 };
