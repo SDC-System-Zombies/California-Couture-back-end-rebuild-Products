@@ -46,8 +46,7 @@ const fetchStyles = (params) => {
     return Promise.all(skuData)
     .then((dataSKU) => {
       return stylesData.map((style, index) => {
-        style['skus'] = dataSKU[index];
-        return style;
+        return { ...style, skus: dataSKU[index] };
       })
     });
   });
@@ -62,7 +61,7 @@ const fetchSkus = (params) => {
 const fetchRelated = (params) => {
   const queryStr = 'SELECT relatedId FROM related WHERE productId = $1';
   return pool.query(queryStr, params)
-  .then((data) => data);
+  .then((data) => data.rows.map((related) => related.relatedid));
 };
 
 module.exports = {
