@@ -10,12 +10,11 @@ const fetchOneProduct = (params) => {
   const getProductQuery = 'SELECT * FROM products WHERE productId = $1';
   const getFeatureQuery = 'SELECT feature, value FROM features WHERE productId = $1';
 
-  Promise.all([
+  return Promise.all([
     pool.query(getProductQuery, params),
     pool.query(getFeatureQuery, params)
   ])
-  .then((data) => data)
-  .catch((err) => `Query fetching product failed: ${err}`);
+  .then((data) => data);
 };
 
 const fetchStyles = (params) => {
@@ -41,7 +40,7 @@ const fetchRelated = (params) => {
 
 module.exports = {
   fetchAllProducts,
-  fetchProduct,
+  fetchOneProduct,
   fetchStyles,
   fetchSkus,
   fetchRelated
