@@ -11,5 +11,5 @@ const productSchema = new Schema({
   slogan: String,
   description: String,
   category: String,
-  default_price: String
+  default_price: Number
 });
