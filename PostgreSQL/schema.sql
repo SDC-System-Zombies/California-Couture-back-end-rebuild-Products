@@ -10,7 +10,7 @@ to create the tables within that database
 
 
 CREATE TABLE IF NOT EXISTS products (
-  productId SERIAL PRIMARY KEY,
+  product_id SERIAL PRIMARY KEY,
   name VARCHAR(200) NOT NULL,
   slogan VARCHAR(200) NOT NULL,
   description TEXT NOT NULL,
@@ -20,33 +20,33 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS features (
   id SERIAL PRIMARY KEY,
-  productId INT NOT NULL,
+  product_id INT NOT NULL,
   feature VARCHAR(200) NOT NULL,
   value VARCHAR(200),
   CONSTRAINT fk_product
-    FOREIGN KEY(productId)
-      REFERENCES products(productId)
+    FOREIGN KEY(product_id)
+      REFERENCES products(product_id)
 );
 
 CREATE TABLE IF NOT EXISTS related (
   id SERIAL PRIMARY KEY,
-  productId INT NOT NULL,
-  relatedId INT NOT NULL,
+  product_id INT NOT NULL,
+  related_id INT NOT NULL,
   CONSTRAINT fk_product
-    FOREIGN KEY(productId)
-      REFERENCES products(productId)
+    FOREIGN KEY(product_id)
+      REFERENCES products(product_id)
 );
 
 CREATE TABLE IF NOT EXISTS styles (
-  styleId SERIAL PRIMARY KEY,
-  productId INT NOT NULL,
+  style_id SERIAL PRIMARY KEY,
+  product_id INT NOT NULL,
   name VARCHAR(200) NOT NULL,
   sale_price VARCHAR(20),
   original_price INT NOT NULL,
   default? BOOLEAN,
   CONSTRAINT fk_product
-    FOREIGN KEY(productId)
-      REFERENCES products(productId)
+    FOREIGN KEY(product_id)
+      REFERENCES products(product_id)
 );
 
 -- CREATE TABLE IF NOT EXISTS photos (
@@ -61,12 +61,12 @@ CREATE TABLE IF NOT EXISTS styles (
 
 CREATE TABLE IF NOT EXISTS skus (
   id SERIAL PRIMARY KEY,
-  styleId INT NOT NULL,
+  style_id INT NOT NULL,
   size VARCHAR(10),
   quantity SMALLINT NOT NULL,
   CONSTRAINT fk_style
-    FOREIGN KEY(styleId)
-      REFERENCES styles(styleId)
+    FOREIGN KEY(style_id)
+      REFERENCES styles(style_id)
 );
 
 -- import CSV files statements
