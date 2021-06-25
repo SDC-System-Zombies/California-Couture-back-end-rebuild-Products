@@ -32,15 +32,9 @@ const fetchStyles = (params) => {
       const id = [ style.styleid ];
       return fetchSkus(id)
       .then((data) => {
-        return data.map((sku) => {
-          const specificSku = {};
-          specificSku[sku.id] = {
-            size: sku.size,
-            quantity: sku.quantity
-          };
-
-          return specificSku;
-        });
+        const skus = {};
+        data.forEach(({ id, size, quantity }) => skus[id] = { size, quantity });
+        return skus;
       });
     });
 
