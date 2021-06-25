@@ -7,12 +7,12 @@ const fetchAllProducts = () => {
 };
 
 const fetchOneProduct = (params) => {
-  const getProductQuery = 'SELECT * FROM products WHERE productId = $1';
-  const getFeatureQuery = 'SELECT feature, value FROM features WHERE productId = $1';
+  const getProductQuery = 'SELECT * FROM products WHERE product_id = $1';
+  const getFeatureQuery = 'SELECT feature, value FROM features WHERE product_id = $1';
 
   return Promise.all([
-    pool.query(getProductQuery, params),
-    pool.query(getFeatureQuery, params)
+    pool.query(getProductQuery, [params]),
+    pool.query(getFeatureQuery, [params])
   ])
   .then((data) => {
     const productData = data[0].rows[0];
@@ -23,13 +23,13 @@ const fetchOneProduct = (params) => {
 };
 
 const fetchStyles = (params) => {
-  const queryStr = 'SELECT styleId, name, sale_price, original_price, default_style FROM styles WHERE productId = $1';
-  return pool.query(queryStr, params)
+  const queryStr = 'SELECT style_id, name, sale_price, original_price, "default?" FROM styles WHERE product_id = $1';
+  return pool.query(queryStr, [params])
   .then((data) => {
     const stylesData = data.rows;
 
     const skuData = stylesData.map((style) => {
-      const id = [ style.styleid ];
+      const id = style.style_id;
       return fetchSkus(id)
       .then((data) => {
         const skus = {};
@@ -46,15 +46,15 @@ const fetchStyles = (params) => {
 };
 
 const fetchSkus = (params) => {
-  const queryStr = 'SELECT id, size, quantity FROM skus WHERE styleId = $1';
-  return pool.query(queryStr, params)
+  const queryStr = 'SELECT id, size, quantity FROM skus WHERE style_id = $1';
+  return pool.query(queryStr, [params])
   .then((data) => data.rows);
 };
 
 const fetchRelated = (params) => {
-  const queryStr = 'SELECT relatedId FROM related WHERE productId = $1';
-  return pool.query(queryStr, params)
-  .then((data) => data.rows.map((related) => related.relatedid));
+  const queryStr = 'SELECT related_id FROM related WHERE product_id = $1';
+  return pool.query(queryStr, [params])
+  .then((data) => data.rows.map((related) => related.related_id));
 };
 
 module.exports = {
