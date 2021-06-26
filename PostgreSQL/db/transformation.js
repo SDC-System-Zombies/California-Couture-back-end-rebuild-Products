@@ -17,8 +17,17 @@ const transformingStyles = (id) => {
 };
 
 const start = () => {
-  for(let i = 1; i <= 100; i ++) {
-    transformingStyles(i)
+  // const transformationPromises = [];
+  // for(let i = 1; i <= 50; i++) {
+  //   transformationPromises.push(transformingStyles(i));
+  // }
+
+  // return Promise.all(transformationPromises)
+  //  .then((res) => console.log(`Hooray! Response: ${res}`))
+  //  .catch((err) => console.log(`Error transforming Styles: ${err}`));
+
+  for(let i = 1; i <= 50; i++) {
+    transformingStyles(i);
       .then((res) => console.log(`Hooray! Response: ${res}`))
       .catch((err) => console.log(`Error transforming Styles: ${err}`));
   }
@@ -26,4 +35,10 @@ const start = () => {
 
 // 4660354 rows
 
-start();
+// start();
+
+/*
+const photoItems = data[0].photos;
+const updatedPhotos = photoItems.map((photo) => JSON.parse(photo));
+res.send(updatedPhotos);
+*/
