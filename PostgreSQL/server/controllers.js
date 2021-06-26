@@ -16,14 +16,7 @@ const getOneProduct = (req, res) => {
 const getStyles = (req, res) => {
   const id = req.params.product_id;
   fetchStyles(id)
-    .then((data) => {
-      const styleInfo = {
-        product_id: id,
-        results: data
-      };
-
-      res.status(200).send(styleInfo);
-    })
+    .then((data) => res.status(200).send({ product_id: id, results: data }))
     .catch((err) => res.status(500).send(`Error fetching styles: ${err}`));
 };
 
