@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS styles (
 
 CREATE TABLE IF NOT EXISTS photos (
   id SERIAL PRIMARY KEY,
+  photos_id INT,
   style_id INT NOT NULL,
   url TEXT NOT NULL,
   thumbnail_url TEXT NOT NULL,
@@ -91,11 +92,16 @@ FROM '/Users/vytran/Downloads/styles.csv'
 DELIMITER ','
 CSV HEADER;
 
--- dont pull the first column of the CSV file due to ids being duplicated / null, not what we want in system
--- COPY photos(style_id, url, thumbnail_url)
--- FROM PROGRAM 'cut -d "," -f 2,3,4 /Users/vytran/Downloads/photos.csv'
--- DELIMITER ','
--- CSV HEADER;
+COPY photos(photos_id, style_id, url, thumbnail_url)
+FROM '/Users/vytran/Downloads/photos.csv'
+DELIMITER ','
+CSV HEADER;
+
+-- the id column of the csv hit a duplicate id
+-- since the PK needs to be unique and we don't use this id column in our data
+-- i just dropped it..
+ALTER TABLE photos
+DROP COLUMN photos_id;
 
 COPY skus
 FROM '/Users/vytran/Downloads/skus.csv'
