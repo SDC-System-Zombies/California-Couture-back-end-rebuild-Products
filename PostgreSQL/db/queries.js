@@ -28,8 +28,6 @@ const fetchStyles = (params) => {
     .then((data) => {
       const stylesData = data.rows;
 
-      console.log('done');
-
       const skus = Promise.all(stylesData.map(({ style_id }) => fetchSkus(style_id)));
       const photos = Promise.all(stylesData.map(({ style_id }) => fetchPhotos(style_id)));
 
