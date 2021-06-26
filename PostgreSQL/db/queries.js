@@ -3,7 +3,7 @@ const pool = require('./index.js');
 const fetchAllProducts = () => {
   const queryStr = 'SELECT * FROM products LIMIT 5';
   return pool.query(queryStr)
-  .then((data) => data.rows);
+    .then((data) => data.rows);
 };
 
 const fetchOneProduct = (params) => {
@@ -14,39 +14,51 @@ const fetchOneProduct = (params) => {
     pool.query(getProductQuery, [params]),
     pool.query(getFeatureQuery, [params])
   ])
-  .then((data) => {
-    const productData = data[0].rows[0];
-    const featureData = data[1].rows;
+    .then((data) => {
+      const productData = data[0].rows[0];
+      const featureData = data[1].rows;
 
-    return { ...productData, features: featureData };
-  });
+      return { ...productData, features: featureData };
+    });
 };
 
 const fetchStyles = (params) => {
   const queryStr = 'SELECT style_id, name, sale_price, original_price, "default?" FROM styles WHERE product_id = $1';
   return pool.query(queryStr, [params])
-  .then((data) => {
-    return Promise.all(data.rows.map((style) => fetchSkus(style.style_id)))
-    .then((dataSKU) => data.rows.map((style, index) => {
-        return { ...style, skus: dataSKU[index] };
-      }));
-  });
+    .then((data) => {
+      const stylesData = data.rows;
+
+      const skus = stylesData.map(({ style_id }) => fetchSkus(style_id));
+      const photos = stylesData.map(({ style_id }) => fetchPhotos(style_id));
+
+      return Promise.all([skus, photos])
+        .then()
+      // .then((dataSKU) => data.rows.map((style, index) => {
+      //     return { ...style, skus: dataSKU[index] };
+      //   }));
+    });
 };
 
 const fetchSkus = (params) => {
   const queryStr = 'SELECT id, size, quantity FROM skus WHERE style_id = $1';
   return pool.query(queryStr, [params])
-  .then((data) => {
-    const skus = {};
-    data.rows.forEach(({ id, size, quantity }) => skus[id] = { size, quantity });
-    return skus;
-  });
+    .then((data) => {
+      const sku = {};
+      data.rows.forEach(({ id, size, quantity }) => sku[id] = { size, quantity });
+      return sku;
+    });
+};
+
+const fetchPhotos = (params) => {
+  const queryStr = 'SELECT url, thumbnail_url FROM photos WHERE style_id = $1';
+  return pool.query(queryStr, [params])
+    .then((data) => data.rows);
 };
 
 const fetchRelated = (params) => {
   const queryStr = 'SELECT related_id FROM related WHERE product_id = $1';
   return pool.query(queryStr, [params])
-  .then((data) => data.rows.map((related) => related.related_id));
+    .then((data) => data.rows.map(({ related_id }) => related_id));
 };
 
 module.exports = {
