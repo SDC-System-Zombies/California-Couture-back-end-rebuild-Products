@@ -28,14 +28,20 @@ const fetchStyles = (params) => {
     .then((data) => {
       const stylesData = data.rows;
 
-      const skus = stylesData.map(({ style_id }) => fetchSkus(style_id));
-      const photos = stylesData.map(({ style_id }) => fetchPhotos(style_id));
+      const skus = Promise.all(stylesData.map(({ style_id }) => fetchSkus(style_id)));
+      const photos = Promise.all(stylesData.map(({ style_id }) => fetchPhotos(style_id)));
 
       return Promise.all([skus, photos])
-        .then()
-      // .then((dataSKU) => data.rows.map((style, index) => {
-      //     return { ...style, skus: dataSKU[index] };
-      //   }));
+        .then((data) => {
+          const mergedStyles = stylesData.map((style, i) => {
+            return { ...style,
+              photos: data[1][i],
+              skus: data[0][i]
+            };
+          });
+
+          return mergedStyles;
+        });
     });
 };
 
