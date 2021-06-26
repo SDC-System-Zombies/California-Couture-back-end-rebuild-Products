@@ -103,6 +103,10 @@ CSV HEADER;
 ALTER TABLE photos
 DROP COLUMN photos_id;
 
+-- due to some formatting issues within the photos id
+-- I also deleted the records where the thumbnail_url was incorrect
+DELETE FROM photos WHERE thumbnail_url LIKE '%,http%';
+
 COPY skus
 FROM '/Users/vytran/Downloads/skus.csv'
 DELIMITER ','
