@@ -28,6 +28,8 @@ const fetchStyles = (params) => {
     .then((data) => {
       const stylesData = data.rows;
 
+      console.log('done');
+
       const skus = Promise.all(stylesData.map(({ style_id }) => fetchSkus(style_id)));
       const photos = Promise.all(stylesData.map(({ style_id }) => fetchPhotos(style_id)));
 
@@ -44,12 +46,6 @@ const fetchStyles = (params) => {
         });
     });
 };
-
-/*
-const photoItems = data[0].photos;
-const updatedPhotos = photoItems.map((photo) => JSON.parse(photo));
-res.send(updatedPhotos);
-*/
 
 const fetchSkus = (params) => {
   const queryStr = 'SELECT id, size, quantity FROM skus WHERE style_id = $1';
