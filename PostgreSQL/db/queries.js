@@ -26,20 +26,8 @@ const fetchStyles = (params) => {
   const queryStr = 'SELECT style_id, name, sale_price, original_price, "default?" FROM styles WHERE product_id = $1';
   return pool.query(queryStr, [params])
   .then((data) => {
-    const stylesData = data.rows;
-
-    const skuData = stylesData.map((style) => {
-      const id = style.style_id;
-      return fetchSkus(id)
-      .then((data) => {
-        const skus = {};
-        data.forEach(({ id, size, quantity }) => skus[id] = { size, quantity });
-        return skus;
-      });
-    });
-
-    return Promise.all(skuData)
-    .then((dataSKU) => stylesData.map((style, index) => {
+    return Promise.all(data.rows.map((style) => fetchSkus(style.style_id)))
+    .then((dataSKU) => data.rows.map((style, index) => {
         return { ...style, skus: dataSKU[index] };
       }));
   });
@@ -48,7 +36,11 @@ const fetchStyles = (params) => {
 const fetchSkus = (params) => {
   const queryStr = 'SELECT id, size, quantity FROM skus WHERE style_id = $1';
   return pool.query(queryStr, [params])
-  .then((data) => data.rows);
+  .then((data) => {
+    const skus = {};
+    data.rows.forEach(({ id, size, quantity }) => skus[id] = { size, quantity });
+    return skus;
+  });
 };
 
 const fetchRelated = (params) => {
