@@ -45,6 +45,12 @@ const fetchStyles = (params) => {
     });
 };
 
+/*
+const photoItems = data[0].photos;
+const updatedPhotos = photoItems.map((photo) => JSON.parse(photo));
+res.send(updatedPhotos);
+*/
+
 const fetchSkus = (params) => {
   const queryStr = 'SELECT id, size, quantity FROM skus WHERE style_id = $1';
   return pool.query(queryStr, [params])
@@ -66,6 +72,29 @@ const fetchRelated = (params) => {
   return pool.query(queryStr, [params])
     .then((data) => data.rows.map(({ related_id }) => related_id));
 };
+
+
+const transformingStyles = (id) => {
+  return Promise.all([
+    fetchPhotos(id),
+    fetchSkus(id)
+  ])
+    .then((data) => {
+      const photoData = data[0];
+      const skuData = data[1];
+
+      console.log('photos', photoData);
+      console.log('skuData', skuData);
+
+      const queryStr = 'UPDATE styles_test SET photos = $1, skus = $2 WHERE style_id = $3;'
+      return pool.query(queryStr, [photoData, skuData, id]);
+    })
+};
+
+// transformingStyles(2)
+//   .then((res) => console.log(`Hooray! Response: ${res}`))
+//   .catch((err) => console.log(`Error with promise all for transforming Styles: ${err}`));
+
 
 module.exports = {
   fetchAllProducts,

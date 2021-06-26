@@ -15,7 +15,7 @@ const getOneProduct = (req, res) => {
 
 const getStyles = (req, res) => {
   const id = req.params.product_id;
-  fetchStyles(id)
+  fetchStyles()
     .then((data) => {
       const styleInfo = {
         product_id: id,
