@@ -5,3 +5,6 @@ node_modules
 coverage
 client/dist/bundle.js
 config.js
+package-lock.json
+coverage
+client/dist/bundle.js.br

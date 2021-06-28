@@ -1,7 +1,16 @@
 {
-  "presets": [["@babel/env", {
-    "targets": {
-      "node":14
-    }
-  }], "@babel/react"]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "10"
+        }
+      }
+    ],
+    "@babel/preset-react" ],
+  "plugins": [
+    ["@babel/transform-runtime"],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ]
 }
