@@ -54,7 +54,16 @@ const fetchSkus = (params) => {
 const fetchPhotos = (params) => {
   const queryStr = 'SELECT url, thumbnail_url FROM photos WHERE style_id = $1';
   return pool.query(queryStr, [params])
-    .then((data) => data.rows);
+    .then((data) => {
+      if (data.rows.length === 0) {
+        return [{
+          'thumbnail_url': 'https://broken',
+          'url': 'https://broken'
+        }]
+      } else {
+        return data.rows;
+      }
+    });
 };
 
 const fetchRelated = (params) => {

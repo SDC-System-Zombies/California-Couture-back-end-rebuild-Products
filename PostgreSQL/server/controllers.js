@@ -21,12 +21,6 @@ const getStyles = (req, res) => {
         if (item.sale_price === "null") {
           item.sale_price = null;
         }
-        if (item.photos.length === 0) {
-          item.photos.push({
-            'thumbnail_url': 'https://broken',
-            'url': 'https://broken'
-          });
-        }
       });
 
       res.status(200).send({ product_id: id, results: data })
