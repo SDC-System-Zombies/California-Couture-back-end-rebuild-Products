@@ -28,14 +28,13 @@ class App extends React.Component {
 
   fetchData (productId) {
     const fetchAPI = async (id) => {
-      // let product = await Atelier.getInfo(id);
       const product = await axios.get(`/products/${id}`);
-      // let styles = await Atelier.getStyles(id);
       const styles = await axios.get(`/products/${id}/styles`);
-      // let related = await Atelier.getRelated(id);
       const related = await axios.get(`/products/${id}/related`);
       // not part of my SDC API call, so hardcoded product value to match..
       let reviewData = await Atelier.getMeta(13023);
+
+      // had to adjust to add 'data' due to how data is received from my API
       this.setState({
         productInfo: product.data,
         styles: styles.data.results,

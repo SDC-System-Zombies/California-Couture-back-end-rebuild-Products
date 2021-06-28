@@ -17,7 +17,7 @@ const ProductCard = ({ productId, index, listState, triggerDelete, triggerModal,
   const fetchProducts = async () => {
     let productData = await axios.get(`/products/${productId}`);
     let productStyles = await axios.get(`/products/${productId}/styles`);
-
+    // had to adjust to include 'data' for how my API works
     const firstStyle = productStyles.data.results[0];
 
     setCategory(productData.data.category);
