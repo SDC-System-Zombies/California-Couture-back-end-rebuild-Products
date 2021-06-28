@@ -8,3 +8,5 @@ config.js
 package-lock.json
 coverage
 client/dist/bundle.js.br
+newrelic.js
+newrelic_agent.log
