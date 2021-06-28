@@ -5,7 +5,7 @@ import Atelier from '../../Atelier.js';
 
 const RelatedList = ({ productId, productClick, toggleOverlay, related, product }) => {
   const [initialIndex, setIndex] = useState(0);
-  const [relatedItems, setRelated] = useState([]);
+  const [relatedItems, setRelated] = useState(related);
   const [isModal, setModal] = useState(false);
   const [relatedId, setId] = useState(0);
   const [isRight, setRight] = useState(false);

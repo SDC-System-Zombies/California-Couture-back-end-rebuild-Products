@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Atelier from '../../Atelier.js';
+import axios from 'axios';
 
 const ComparisonModal = ({ relatedId, trigger, product }) => {
   const [allChars, setAllChars] = useState([]);
@@ -9,7 +10,7 @@ const ComparisonModal = ({ relatedId, trigger, product }) => {
   const [itemName, setName] = useState({ product: 'Product 1', related: 'Product 2' });
 
   const fetchItems = async () => {
-    let relatedData = await Atelier.getInfo(relatedId);
+    let relatedData = await axios.get(`/products/${relatedId}`);
 
     const pd = product.features;
     const rd = relatedData.features;

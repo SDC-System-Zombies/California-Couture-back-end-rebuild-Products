@@ -4,6 +4,7 @@ import ActionButton from './ActionButton.jsx';
 import Atelier from '../../Atelier.js';
 import errimage from '../../imgs/imagenot.png';
 import Gallery from './PCGallery.jsx';
+import axios from 'axios';
 
 const ProductCard = ({ productId, index, listState, triggerDelete, triggerModal, offset, productClick }) => {
   const [image, setImage] = useState('');
@@ -14,13 +15,13 @@ const ProductCard = ({ productId, index, listState, triggerDelete, triggerModal,
   const [showGallery, setShow] = useState(false);
 
   const fetchProducts = async () => {
-    let productData = await Atelier.getInfo(productId);
-    let productStyles = await Atelier.getStyles(productId);
+    let productData = await axios.get(`/products/${productId}`);
+    let productStyles = await axios.get(`/products/${productId}/styles`);
 
-    const firstStyle = productStyles.results[0];
+    const firstStyle = productStyles.data.results[0];
 
-    setCategory(productData.category);
-    setName(productData.name);
+    setCategory(productData.data.category);
+    setName(productData.data.name);
     setImage(firstStyle.photos[0].thumbnail_url);
     setPrice({
       default: firstStyle.original_price,

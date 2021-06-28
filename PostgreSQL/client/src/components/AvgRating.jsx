@@ -17,7 +17,8 @@ const AvgRating = ({ productId }) => {
   };
 
   const fetchRatings = async () => {
-    const data = await Atelier.getMeta(productId);
+    // hardcoded in due to api not being part of SDC
+    const data = await Atelier.getMeta(13023);
     setRatings(data.ratings);
   };
 

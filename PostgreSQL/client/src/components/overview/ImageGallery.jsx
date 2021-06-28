@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Thumbnails from './Thumbnails.jsx';
 import ZoomedPreview from './ZoomedPreview.jsx';
+import errimage from '../../imgs/imagenot.png';
 
 const ImageGallery = ({ style, styleid, theme }) => {
   const [showView, setView] = useState(false);
@@ -80,7 +81,7 @@ const ImageGallery = ({ style, styleid, theme }) => {
           <img
             className='preview'
             onClick={handleViewClick}
-            src={ currentPhoto.url }
+            src={ currentPhoto.url ? currentPhoto.url : errimage }
             alt='One of the preview pictures of the selected style'/>
         </div>
       }

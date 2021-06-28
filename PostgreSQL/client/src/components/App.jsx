@@ -5,13 +5,14 @@ import Ratings from './RatingsReview.jsx';
 import RICWidget from './RIC-Widget.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
+import axios from 'axios';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: 13023,
+      product: 1,
       stylePath: 'lightTheme.css',
       isOverlay: false,
       isFetched: false,
@@ -27,19 +28,24 @@ class App extends React.Component {
 
   fetchData (productId) {
     const fetchAPI = async (id) => {
-      let product = await Atelier.getInfo(id);
-      let styles = await Atelier.getStyles(id);
-      let reviewData = await Atelier.getMeta(id);
-      let related = await Atelier.getRelated(id);
+      // let product = await Atelier.getInfo(id);
+      const product = await axios.get(`/products/${id}`);
+      // let styles = await Atelier.getStyles(id);
+      const styles = await axios.get(`/products/${id}/styles`);
+      // let related = await Atelier.getRelated(id);
+      const related = await axios.get(`/products/${id}/related`);
+      // not part of my SDC API call, so hardcoded product value to match..
+      let reviewData = await Atelier.getMeta(13023);
       this.setState({
-        productInfo: product,
-        styles: styles.results,
+        productInfo: product.data,
+        styles: styles.data.results,
         reviews: reviewData,
-        related: related,
+        related: related.data,
         isFetched: true
       });
     }
-    fetchAPI(productId);
+    fetchAPI(productId)
+      .catch((err) => `Error fetching data ${err}`);
   }
 
   handleGetClickInfo (e) {
@@ -80,8 +86,8 @@ class App extends React.Component {
   }
 
   handleProductHighlight() {
-    this.setState({ product: 13357 });
-    this.fetchData(13357)
+    this.setState({ product: 2 });
+    this.fetchData(2)
   }
 
   toggleTheme() {
@@ -156,7 +162,7 @@ class App extends React.Component {
             related={related}
             product={productInfo}/>
 
-          <Ratings id={product} meta={this.state.reviews} info={this.state.productInfo} toggleOverlay={this.toggleOverlay} />
+          <Ratings id={13023} meta={this.state.reviews} info={this.state.productInfo} toggleOverlay={this.toggleOverlay} />
 
           <div id="overlay"></div>
         </div>

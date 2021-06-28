@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AvgRating from '../AvgRating.jsx';
+import errimage from '../../imgs/imagenot.png';
 
 const Cart = ( { stylesList, style, handleStyleSelect, currentProduct } ) => {
   const [skus, setSKUs] = useState(parseSKUs(style));
@@ -65,7 +66,7 @@ const Cart = ( { stylesList, style, handleStyleSelect, currentProduct } ) => {
               : 'style-not-selected'}
             key={stylePic.style_id}
             pic-id={stylePic.style_id}
-            src={stylePic.photos[0].thumbnail_url}
+            src={stylePic.photos[0].thumbnail_url ? stylePic.photos[0].thumbnail_url : errimage}
             alt={stylePic.name}
             onClick={(e) => handleStyleSelect(e.currentTarget.getAttribute('pic-id'))}/>
           </div>

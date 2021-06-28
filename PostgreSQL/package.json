@@ -7,8 +7,8 @@
     "test": "jest",
     "react-dev": "webpack --mode=development --watch",
     "react-prod": "webpack --mode=production",
-    "server-dev": "nodemon server.js",
-    "server-prod": "node server.js"
+    "server-dev": "nodemon server/server.js",
+    "server-prod": "node server/server.js"
   },
   "repository": {
     "type": "git",
