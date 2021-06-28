@@ -16,7 +16,21 @@ const getOneProduct = (req, res) => {
 const getStyles = (req, res) => {
   const id = req.params.product_id;
   fetchStyles(id)
-    .then((data) => res.status(200).send({ product_id: id, results: data }))
+    .then((data) => {
+      data.forEach((item) => {
+        if (item.sale_price === "null") {
+          item.sale_price = null;
+        }
+        if (item.photos.length === 0) {
+          item.photos.push({
+            'thumbnail_url': 'https://broken',
+            'url': 'https://broken'
+          });
+        }
+      });
+
+      res.status(200).send({ product_id: id, results: data })
+    })
     .catch((err) => res.status(500).send(`Error fetching styles: ${err}`));
 };
 
