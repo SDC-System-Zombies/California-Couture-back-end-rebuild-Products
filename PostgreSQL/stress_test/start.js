@@ -12,18 +12,18 @@ export let options = {
       rate: 1,
       timeUnit: '1s',
       duration: '30s',
-      preAllocatedVUs: 1000,
+      preAllocatedVUs: 1,
     },
   }
 };
 
 export default function () {
-  productTest();
+  // productTest();
   // singleprodTest();
   // styleTest();
-  // relatedTest();
+  relatedTest();
 };
 
-// command: k6 run stress_test/server.js
+// command: k6 run stress_test/start.js
 
 
