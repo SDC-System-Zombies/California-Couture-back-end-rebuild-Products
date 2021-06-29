@@ -6,15 +6,24 @@ import styleTest from './styles.js';
 import relatedTest from './related.js';
 
 export let options = {
-  vus: 10,
-  duration: '30s'
+  scenarios: {
+    open_model: {
+      executor: 'constant-arrival-rate',
+      rate: 1000,
+      timeUnit: '1s',
+      duration: '30s',
+      preAllocatedVUs: 1,
+    },
+  }
 };
 
 export default function () {
-  productTest();
-  singleprodTest();
-  styleTest();
+  // productTest();
+  // singleprodTest();
+  // styleTest();
   relatedTest();
 };
 
 // command: k6 run stress_test/server.js
+
+
