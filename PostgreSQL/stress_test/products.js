@@ -3,7 +3,6 @@ import { sleep, check } from 'k6';
 
 export default function () {
   let res = http.get('http://localhost:3000/products');
-  sleep(1);
 
   check(res, {
     "status is 200": (r) => r.status === 200

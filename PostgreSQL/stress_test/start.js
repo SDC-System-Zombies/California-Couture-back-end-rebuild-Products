@@ -9,19 +9,19 @@ export let options = {
   scenarios: {
     open_model: {
       executor: 'constant-arrival-rate',
-      rate: 1000,
+      rate: 1,
       timeUnit: '1s',
       duration: '30s',
-      preAllocatedVUs: 1,
+      preAllocatedVUs: 1000,
     },
   }
 };
 
 export default function () {
-  // productTest();
+  productTest();
   // singleprodTest();
   // styleTest();
-  relatedTest();
+  // relatedTest();
 };
 
 // command: k6 run stress_test/server.js
