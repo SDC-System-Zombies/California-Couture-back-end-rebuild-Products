@@ -3,14 +3,20 @@ const { fetchAllProducts, fetchOneProduct, fetchStyles, fetchRelated } = require
 const getAllProducts = (req, res) => {
   fetchAllProducts()
     .then((data) => res.status(200).send(data))
-    .catch((err) => res.status(500).send(`Error fetching products: ${err}`));
+    .catch((err) => {
+      res.status(500).send(`Error fetching products: ${err}`)
+      console.error(`Error fetching products: ${err}\n\n${err.stack}`);
+    });
 };
 
 const getOneProduct = (req, res) => {
   const id = req.params.product_id;
   fetchOneProduct(id)
     .then((data) => res.status(200).send(data))
-    .catch((err) => res.status(500).send(`Error fetching a product: ${err}`));
+    .catch((err) => {
+      res.status(500).send(`Error fetching single product: ${err}`)
+      console.error(`Error fetching single product: ${err}\n\n${err.stack}`);
+    });
 };
 
 const getStyles = (req, res) => {
@@ -25,14 +31,20 @@ const getStyles = (req, res) => {
 
       res.status(200).send({ product_id: id, results: data })
     })
-    .catch((err) => res.status(500).send(`Error fetching styles: ${err}`));
+    .catch((err) => {
+      res.status(500).send(`Error fetching styles: ${err}`)
+      console.error(`Error fetching styles: ${err}\n\n${err.stack}`);
+    });
 };
 
 const getRelated = (req, res) => {
   const id = req.params.product_id;
   fetchRelated(id)
     .then((data) => res.status(200).send(data))
-    .catch((err) => res.status(500).send(`Error fetching styles: ${err}`));
+    .catch((err) => {
+      res.status(500).send(`Error related products: ${err}`)
+      console.error(`Error related products: ${err}\n\n${err.stack}`);
+    });
 }
 
 module.exports = {

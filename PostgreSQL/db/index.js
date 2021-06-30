@@ -7,7 +7,7 @@ const pool = new Pool({
   database: 'atelier',
   password: token,
   port: 5432,
-  max: 20,
+  max: 95,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 });

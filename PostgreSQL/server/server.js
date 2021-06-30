@@ -9,7 +9,7 @@ const compression = require('compression')
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
