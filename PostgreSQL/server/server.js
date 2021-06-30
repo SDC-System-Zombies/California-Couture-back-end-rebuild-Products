@@ -7,7 +7,7 @@ const expressStaticGzip = require('express-static-gzip');
 const compression = require('compression')
 
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = 2222 || process.env.PORT;
 
 // app.use(morgan('dev'));
 app.use(express.json());
