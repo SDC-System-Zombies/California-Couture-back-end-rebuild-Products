@@ -9,11 +9,11 @@ export let options = {
   scenarios: {
     open_model: {
       executor: 'constant-arrival-rate',
-      rate: 1000,
+      rate: 5000,
       timeUnit: '1s',
       duration: '30s',
-      preAllocatedVUs: 1,
-      maxVUs: 1
+      preAllocatedVUs: 110,
+      maxVUs: 110
     },
   }
 };
