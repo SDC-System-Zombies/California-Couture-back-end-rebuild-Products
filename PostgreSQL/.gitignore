@@ -12,3 +12,4 @@ newrelic.js
 newrelic_agent.log
 database.env
 web_vars.env
+server_vars.env

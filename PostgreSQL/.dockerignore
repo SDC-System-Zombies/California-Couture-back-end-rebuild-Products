@@ -15,3 +15,4 @@ stress_test
 schema.sql
 npm-debug.log
 web_vars.env
+server_vars.env

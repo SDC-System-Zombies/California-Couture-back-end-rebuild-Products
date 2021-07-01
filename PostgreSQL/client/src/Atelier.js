@@ -1,5 +1,4 @@
-import { auth } from '../../config.js';
-
+// import { auth } from '../../config.js';
 
 
 /*********
@@ -74,7 +73,7 @@ class Atelier {
       res = await fetch(this.baseURL + endpoint, {
         method: 'GET',
         headers: new Headers({
-          'Authorization': auth.TOKEN,
+          'Authorization': process.env.REACT_APP_API_TOKEN,
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         })
@@ -91,7 +90,7 @@ class Atelier {
     var res = await fetch(this.baseURL + endpoint, {
       method: 'POST',
       headers: new Headers({
-        'Authorization': auth.TOKEN,
+        'Authorization': process.env.REACT_APP_API_TOKEN,
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
@@ -104,7 +103,7 @@ class Atelier {
     var res = await fetch(this.baseURL + endpoint, {
       method: 'PUT',
       headers: new Headers({
-        'Authorization': auth.TOKEN
+        'Authorization': process.env.REACT_APP_API_TOKEN
       }),
     });
     return true;
