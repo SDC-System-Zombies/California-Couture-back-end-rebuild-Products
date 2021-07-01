@@ -1,5 +1,5 @@
 node_modules
-.env
+database.env
 db/token.js
 .DS_Store
 node_modules
@@ -13,3 +13,5 @@ newrelic.js
 newrelic_agent.log
 stress_test
 schema.sql
+npm-debug.log
+web_vars.env

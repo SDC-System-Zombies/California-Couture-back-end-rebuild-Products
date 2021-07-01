@@ -10,4 +10,5 @@ coverage
 client/dist/bundle.js.br
 newrelic.js
 newrelic_agent.log
-.env
+database.env
+web_vars.env
