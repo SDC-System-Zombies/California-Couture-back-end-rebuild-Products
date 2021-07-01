@@ -19,5 +19,7 @@ services:
       - "db"
     ports:
       - "2222:2222"
+    extra_hosts:
+      host.docker.internal: host-gateway
 volumes:
   db-data:
