@@ -19,5 +19,5 @@ services:
       - "db"
     ports:
       - "2222:2222"
-  volumes:
-    db-data:
+volumes:
+  db-data:
