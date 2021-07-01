@@ -12,8 +12,8 @@ export let options = {
       rate: 5000,
       timeUnit: '1s',
       duration: '30s',
-      preAllocatedVUs: 110,
-      maxVUs: 110
+      preAllocatedVUs: 115,
+      maxVUs: 115
     },
   }
 };
