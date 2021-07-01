@@ -3,5 +3,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY . /app
 RUN npm install
+RUN npm run react-prod
 EXPOSE 2222
-CMD ["npm", "run", "react-prod"]
+CMD ["npm", "run", "server-prod"]
