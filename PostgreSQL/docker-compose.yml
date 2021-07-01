@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db:
+    image: postgres:13.3-alpine
+    container_name: sdc-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  web-server:
+    container_name: sdc-server
+    build: .
+    depends_on:
+      - "db"
+    ports:
+      - "2222:2222"
+  volumes:
+    db-data:
