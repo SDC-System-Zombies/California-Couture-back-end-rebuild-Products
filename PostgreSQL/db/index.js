@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
-const token = require('./token.js');
+const { user, password, database, host } = require('./token.js');
 
 const pool = new Pool({
-  user: 'hrvy',
-  host: 'localhost',
-  database: 'atelier',
-  password: token,
+  user,
+  host,
+  database,
+  password,
   port: 5432,
   max: 95,
   idleTimeoutMillis: 30000,
