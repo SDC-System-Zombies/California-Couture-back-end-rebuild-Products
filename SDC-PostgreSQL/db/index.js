@@ -1,9 +1,8 @@
 const { Pool } = require('pg');
-// const { user, password, database, host } = require('./token.js');
 
 const pool = new Pool({
   user: process.env.DB_USER,
-  host: 'db',
+  host: process.env.DB_HOST,
   database: process.env.DB_DB ,
   password: process.env.DB_PW,
   port: 5432,
@@ -13,3 +12,5 @@ const pool = new Pool({
 });
 
 module.exports = pool;
+
+// change host to localhost when locally testing
