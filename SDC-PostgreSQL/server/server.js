@@ -1,5 +1,4 @@
 // require('newrelic');
-require('dotenv').config();
 
 const express = require('express');
 const morgan = require('morgan');
@@ -28,4 +27,9 @@ app.use('/', expressStaticGzip('client/dist', {
 
 app.listen(PORT, function() {
   console.log(`Server listening at http://localhost:${PORT}`);
+});
+
+// loader.io testing
+app.get(`/${process.env.LOADERIO}`, (req, res) => {
+  res.send(`/${process.env.LOADERIO}`);
 });
