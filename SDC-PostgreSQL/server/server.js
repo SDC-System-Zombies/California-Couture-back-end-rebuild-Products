@@ -30,6 +30,6 @@ app.listen(PORT, function() {
 });
 
 // loader.io testing
-app.get(`/${process.env.LOADERIO}`, (req, res) => {
-  res.send(`/${process.env.LOADERIO}`);
+app.use(`/${process.env.LOADERIO}/`, (req, res) => {
+  res.send(`${process.env.LOADERIO}`);
 });
