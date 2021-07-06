@@ -98,10 +98,11 @@
 
 .review-buttons button {
   background-color: #2c59a5;
-  border: 1px solid white;
+  border: 1px solid transparent;
   color: white;
   font-family: inherit;
   margin-left: 10px;
+  border-radius: 8px;
 }
 .review-buttons button:hover{
   color: #ecf4f4;
@@ -137,7 +138,7 @@
 }
 
 .breakdown {
-  border: 1px solid #2c59a5;
+  border-right: rgb(180, 180, 180) 1px solid;
   margin: 5px;
   height: 600px;
   width: fit-content;
@@ -340,11 +341,12 @@
 
 .review-char-bar {
   display: inline-block;
-  border: 1px solid #f4f4f4;
+  /* border: 1px solid #f4f4f4; */
   position: relative;
-  background: #2c59a5;
-  height: 5px;
+  background-color: #2c59a5;
+  height: 3px;
   width: auto;
+  margin-right: 2px;
 }
 
 .review-char-breakdown {
@@ -362,14 +364,22 @@
   grid-column: 1;
   grid-row: 2;
   white-space: nowrap;
-  margin-top: 3px;
+  /* margin-top: 3px; */
+  font-size: 9px;
 }
 
 .review-char-breakdown .end {
   grid-column: -2;
   grid-row: 2;
   white-space: nowrap;
-  margin-top: 3px;
+  /* margin-top: 3px; */
+  font-size: 9px;
+  text-align: right;
+  margin-right: 2px;
+}
+
+.qualities {
+  margin-bottom: 10px;
 }
 
 .review-indicator {
@@ -392,12 +402,14 @@
 }
 
 .helpful-button {
-  background: #2c59a5;
-  border: 1px solid white;
+  background: none;
+  border: none;
   font-family: inherit;
   color: white;
   font-size: 10px;
   margin-right: 1px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .review-container button:disabled {
@@ -416,66 +428,79 @@
 /* ---------------------------- Overview ---------------------------- */
 .overview {
   top: 20px;
-  min-width: 90vw;
-  min-height: 100vh;
-  width: 90vw;
-  height: 100vh ;
+  width: auto;
+  height: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-evenly;
-  position: relative;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 
-.image-gallery, .enlarged-image-gallery {
-  border: 1px #2c59a5 solid;
-  background-color: #1a1a1a;
+.first-layer {
+  width: 1200px;
+  height: auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  object-fit: cover;
-  box-shadow: 3px 3px #2c59a5;
-  z-index: 3;
-}
-
-.image-gallery, .image-gallery-overlay, .preview-container {
-  width: 54vw;
-  height: 60vh;
-}
-
-.enlarged-image-gallery, .enlarged-image-gallery-overlay {
-  width: 90vw;
-  height: 70vh;
+  flex-direction: row;
+  /* justify-content: center; */
+  margin-bottom: 20px;
 }
 
 .image-gallery {
   overflow: hidden;
-  padding: 30px;
-  min-width: 50vw;
-  min-height: 50vh;
+  width: 780px;
+  height: 500px;
   display:flex;
   justify-content: center;
 }
 
-.enlarged-image-gallery {
-  position:absolute;
-  padding: 30px;
+.image-gallery-overlay{
+  width: 700px;
+  height: 500px;
 }
+
+.preview-container {
+  z-index: 5;
+  width: 400px;
+  height: 500px;
+  margin-left: 175px;
+}
+
+.preview {
+
+  /* cursor: zoom-in; */
+  /* position: relative; */
+  width: 400px;
+  height: 500px;
+  object-fit: fill;
+}
+
 
 .cart {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   position: relative;
-  left: 30px;
-  width: 30vw;
-  height: 70vh;
+  left: 20px;
+  width: 280px;
+  height: 500px;
+}
+
+.cart-desc {
+  width: auto;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 10px; */
+  position: relative;
 }
 
 .description-features {
   display: flex;
   justify-content: center;
-  width: 89vw;
-  height: 200px;
+  margin-top: 20px;
+  width: 1000px;
+  height: 175px;
 }
 
 .description {
@@ -483,18 +508,25 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  padding-right: 30px;
+  margin-left: 20px;
 }
 
 .features {
-  width: 40vw;
+  width: 500px;
   display: flex;
   padding-left: 30px;
   flex-direction: column;
-  justify-content: space-evenly;
-  border-left: #2c59a5 1px solid;
+  border-left: rgb(180, 180, 180) 1px solid;
+  padding-top: 30px;
 }
 
-.preview-container, .zoomed-preview-container {
+.feature {
+  list-style-type: '✓';
+  margin-bottom: 5px;
+}
+
+.zoomed-preview-container {
   order: 3;
   display: flex;
   justify-content: center;
@@ -506,21 +538,6 @@
   width: 60vw;
   height: 70vh;
   overflow: hidden;
-}
-
-.preview-container {
-  width: 30vw;
-  overflow: hidden;
-}
-
-.preview {
-  z-index: 5;
-  cursor: zoom-in;
-  position: relative;
-  max-height: 100%;
-  height: 100%;
-  max-width: auto;
-  width: auto;
 }
 
 #zoomed-preview {
@@ -551,27 +568,23 @@
 
 #thumbs-reel {
   grid-column-start: 1;
-  height: 60vh;
-  width: 110px;
-  overflow: scroll;
-  overflow-y: scroll #1a1a1a;
+  height: 500px;
+  width: 115px;
+  overflow: hidden;
 }
 
 .thumb-not-selected, .thumb-selected {
   cursor: pointer;
   object-fit: cover;
   width: 100px;
-  height: 54px;
-  margin: 5px;
-  border-radius: 10%
-}
-
-.thumb-not-selected {
-  box-shadow: 2px 2px #2c59a5;
+  height: 110px;
+  margin: 2px;
+  padding: 2px;
+  /* border-radius: 10% */
 }
 
 .thumb-selected {
-  box-shadow: 4px 4px #2c59a5;
+  border: 1px solid #a1a1a1;
 }
 
 #left-button, #right-button, .enlarge-button{
@@ -582,6 +595,7 @@
 #left-button {
   grid-column-start: 3;
   grid-row-start: 6;
+  margin-left: 40px;
 }
 
 #right-button {
@@ -594,32 +608,39 @@
   grid-row-start: 1;
 }
 
-.cart-ratings {
-  order: 1;
-  display: flex;
-  width: 30vw;
-}
-
 #category {
-  order: 2;
   width: 30vw;
+  height: 20px;
+  font-size: 13px;
+  padding-bottom: 5px;
 }
 
 #name {
-  order: 3;
+  padding-top: 10px;
+  padding-bottom: 5px;
   width: 30vw;
   font-weight:900;
+  height: 20px;
 }
 
 .price, .price-sale{
-  order: 4;
-  width: 30vw
+  width: 30vw;
+  height: 20px;
+  font-size: 13px;
+  padding-bottom: 5px;
 }
+
+.cartcolor {
+  font-size: 13px;
+  padding-bottom: 5px;
+}
+
 
 .price-sale {
   color:red
 }
-.size-select {
+
+/* .size-select {
   display:flex;
   justify-content: center;
   width: 15vw;
@@ -653,16 +674,74 @@
 .cart-submit input {
   width: 321px;
   height: 40px;
+} */
+
+.cart-buttons {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.cart-buttons select {
+  font-family: inherit;
+  font-size: 12px;
+  height: 40px;
+}
+
+.cart-size {
+  width: 180px;
+  margin-right: 10px;
+}
+
+.cart-quanity {
+  width: 50px;
+}
+
+.cart-submit input {
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid transparent;
+  background-color: #2c59a5;
+  color: white;
+  line-height: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-radius: 30px;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.social-media a {
+  color: white;
+}
+
+.fa-facebook-f,
+.fa-twitter,
+.fa-pinterest-p {
+  width: 50px;
+}
+
+.fa-facebook-f:hover,
+.fa-twitter:hover,
+.fa-pinterest-p:hover{
+  color: #2c59a5;
 }
 
 .styles-box {
-  order: 5;
+  width: 280px;
+  height: 140px;
+  display: flex;
+  /* margin-top: 100px; */
+  position: relative;
+  overflow: hidden;
   flex-wrap: wrap;
-  width: 30vw;
-  height: auto;
 }
 
-.styles-box h1 {
+/* .styles-box h3 {
   font-size: 1.5em;
   margin: 0;
   margin-top: .67em;
@@ -672,28 +751,28 @@
   height: auto;
   width: 30vw;
   text-align: center;
-}
+} */
 
-.styles {
+/* .styles {
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll #1a1a1a;
   overflow-x: hidden;
   width: 30vw;
   height: 240px;
-}
+} */
 
-.style {
-  display: flex;
+/* .style {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-right: .5vw;
-  height: 120px;
-  width: 7vw;
-}
+  height: 60px;
+  width: 60px;
+} */
 
-.style-caption {
+/* .style-caption {
   font-size: 12px;
   padding-bottom: 5px;
   position: relative;
@@ -701,19 +780,25 @@
   display: inline-block;
   height: 25px;
   width: 7vw
+} */
+
+.style {
+  height: 70px;
+  width: 70px;
 }
 
 .style-not-selected, .style-selected {
   object-fit: cover;
   position: relative;
-  height: 5vw;
-  width: 5vw;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .style-not-selected {
-  padding: 5px;
+  padding: 3px;
+  border: 2px solid transparent;
 }
 
 .style-selected {
