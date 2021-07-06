@@ -3,7 +3,6 @@ import ImageGallery from './overview/ImageGallery.jsx';
 import Cart from './overview/Cart.jsx';
 import Description from './overview/Description.jsx';
 import Atelier from '../Atelier.js';
-import { auth } from '../../../config.js';
 
 const Overview = ({ theme, productId, styles, product }) => {
   const [currentProduct, setCurrentProduct] = useState(product);
