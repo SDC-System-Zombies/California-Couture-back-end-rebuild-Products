@@ -1,4 +1,3 @@
 # Products
-System Design Capstone - Products API service
 
-PostgreSQL
+System Design Capstone - Products API service
