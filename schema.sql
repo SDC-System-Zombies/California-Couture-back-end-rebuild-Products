@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS styles (
   name VARCHAR(200) NOT NULL,
   sale_price VARCHAR(20),
   original_price INT NOT NULL,
-  default? BOOLEAN,
+  "default?" BOOLEAN,
   CONSTRAINT fk_product
     FOREIGN KEY(product_id)
       REFERENCES products(id)
