@@ -22,6 +22,6 @@ This repo is the Products microservice.
 
 ## Other Microservices
 
-[Reviews](https://github.com/yichunjin/Reviews-API-service) by [Kathy Yichun Jin](https://github.com/yichunjin)
+[Reviews](https://github.com/SDC-System-Zombies/Reviews-API-service) by [Kathy Yichun Jin](https://github.com/yichunjin)
 
 [Questions & Answers](https://github.com/SDC-System-Zombies/Q-A) by [Julian Thong](https://github.com/julianzthong)
